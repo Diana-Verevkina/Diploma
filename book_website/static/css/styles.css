@@ -122,3 +122,19 @@ main {
     top: 200px;
     left: 40px;
 }
+
+#book_link {
+    text-decoration: none;
+    color: white;
+    background: #876955;
+    margin-right: 15px;
+    border: 1px solid #6b462b;
+    padding: 7px;
+    flex-basis: auto;
+    flex-grow: 1;
+}
+
+#book_link:hover {
+    background: antiquewhite;
+    color: #634b3b;
+}

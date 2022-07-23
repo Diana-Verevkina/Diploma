@@ -18,6 +18,11 @@ def books(request):
     return render(request, template, context)
 
 
+def book_details(request):
+    template = 'book_detail.html'
+    return render(request, template)
+
+
 def authors(request):
     template = 'authors.html'
     context = {
