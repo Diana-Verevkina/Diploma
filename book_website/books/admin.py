@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Book
+from .models import books_book
 
 
 class BookAdmin(admin.ModelAdmin):
@@ -8,6 +8,6 @@ class BookAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
 
 
-admin.site.register(Book, BookAdmin)
+admin.site.register(books_book, BookAdmin)
 
 
