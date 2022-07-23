@@ -10,3 +10,12 @@ def index(request):
 def books(request):
     template = 'books.html'
     return render(request, template)
+
+
+def authors(request):
+    template = 'authors.html'
+    return render(request, template)
+
+def recommendations(request):
+    template = 'recommendations.html'
+    return render(request, template)
