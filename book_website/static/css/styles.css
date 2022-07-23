@@ -6,6 +6,11 @@
     margin-top: 20px
 }
 
+h1 a {
+    text-decoration: none;
+    color: #8a5834;
+}
+
 #foot1 {
     position: fixed;
     right: 40px;
@@ -40,8 +45,9 @@
 }
 
 #foto {
-    position: absolute;
+    position: fixed;
     left: 90px;
+    top: 100px;
     z-index: 2;
     opacity: 0.90
 }
@@ -63,30 +69,23 @@ li {
     list-style-type: none;
 }
 
-h1 a {
-    text-decoration: none;
-    color: #8a5834;
-}
-
-
-
 #li_1 {
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     left: 650px;
     top: 10px;
 }
 
 #li_2 {
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     left: 850px;
     top: 10px;
 }
 
 #li_3 {
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     left: 1050px;
     top: 10px;
 }
@@ -100,19 +99,26 @@ li a:hover {
     position: fixed;
     right: 0px;
     top: 0px;
-    opacity: 0.90
+    opacity: 0.90;
 }
 
 #head_fon {
-    position: fixed;
-    right: 0px;
-    top: 0px;
-    opacity: 0.90
+    background-attachment: scroll;
+    margin-left: 600px;
+    margin-top: -140px;
+    opacity: 0.90;
 }
 
 #fon_book {
-    position: fixed;
-    right: 0px;
-    bottom: 0px;
-    opacity: 0.90
+    background-attachment: scroll;
+    margin-left: 0px;
+    margin-top: 50px;
+}
+
+
+main {
+    position: absolute;
+    z-index: 2;
+    top: 200px;
+    left: 40px;
 }
