@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Book(models.Model):
+    index = models.IntegerField(default=None)
     name = models.CharField(max_length=200)
     author = models.CharField(max_length=50)
     section = models.CharField(max_length=50)
