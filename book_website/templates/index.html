@@ -7,19 +7,8 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <header>
-        <h1 id="name">BookFord</h1>
-    </header>
-
+    {% include "includes/header.html" %}
     <main>
-        <div>
-            <ul>
-                <li id="li_1">Books</li>
-                <li id="li_2">Authors</li>
-                <li id="li_3">Recommendations</li>
-            </ul>
-        </div>
-
         <img id = "foto" src="{% static 'img/book.jpg' %}" width="500" height="550">
         <img id = "fon" src="{% static 'img/fon.jpg' %}" width="1000" height="630">
         <h1>

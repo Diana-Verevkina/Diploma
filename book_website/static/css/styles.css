@@ -79,9 +79,28 @@ li {
     top: 10px;
 }
 
+li:hover {
+    background: #6b462b;
+    color: #d4ad92;
+}
+
 #fon {
     position: fixed;
     right: 0px;
     top: 0px;
+    opacity: 0.90
+}
+
+#head_fon {
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    opacity: 0.90
+}
+
+#fon_book {
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
     opacity: 0.90
 }
