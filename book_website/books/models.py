@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class books_book(models.Model):
+class Book(models.Model):
     index = models.IntegerField(default=None)
     name = models.CharField(max_length=200)
     author = models.CharField(max_length=50)
@@ -13,25 +13,3 @@ class books_book(models.Model):
     rating = models.FloatField()
     cove = models.TextField()
     description = models.TextField()
-
-"""
-
-from django.db import models
-
-
-class Books(models.Model):
-    index = models.TextField(blank=True, null=True)  # This field type is a guess.
-    name = models.TextField(blank=True, null=True)  # This field type is a guess.
-    author = models.TextField(blank=True, null=True)  # This field type is a guess.
-    section = models.TextField(blank=True, null=True)  # This field type is a guess.
-    publish = models.TextField(blank=True, null=True)  # This field type is a guess.
-    age = models.TextField(blank=True, null=True)  # This field type is a guess.
-    year = models.TextField(blank=True, null=True)  # This field type is a guess.
-    pages = models.TextField(blank=True, null=True)  # This field type is a guess.
-    rating = models.TextField(blank=True, null=True)  # This field type is a guess.
-    cove = models.TextField(blank=True, null=True)  # This field type is a guess.
-    description = models.TextField(blank=True, null=True)  # This field type is a guess.
-
-"""
-
-

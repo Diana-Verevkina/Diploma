@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1 id="name">BookFord</h1>
+    </header>
+
+    <main>
+        <div>
+            <ul>
+                <li id="li_1">Books</li>
+                <li id="li_2">Authors</li>
+                <li id="li_3">Recommendations</li>
+            </ul>
+        </div>
+
+        <img id = "foto" src="{% static 'img/book.jpg' %}" width="500" height="550">
+        <img id = "fon" src="{% static 'img/fon.jpg' %}" width="1000" height="630">
+        <h1>
+            <p id = "citation1">Can you smell that?</p>
+            <p id = "citation2">These are books...</p>
+        </h1>
+    </main>
+
+    <footer>
+        <h2 id="foot1">
+            <p>Student: Verevkina Diana </p>
+        </h2>
+        <h2 id="foot2">
+            <p>Group: IU5-82B</p>
+        </h2>
+    </footer>
+
+</body>
+</html>
