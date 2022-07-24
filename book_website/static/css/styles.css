@@ -97,8 +97,8 @@ li a:hover {
 
 #fon {
     position: fixed;
-    right: 0px;
-    top: 0px;
+    right: 0;
+    top: 0;
     opacity: 0.90;
 }
 
@@ -111,7 +111,7 @@ li a:hover {
 
 #fon_book {
     background-attachment: scroll;
-    margin-left: 0px;
+    margin-left: 0;
     margin-top: 50px;
 }
 
@@ -141,7 +141,7 @@ main {
 
 #white_title {
     background-attachment: scroll;
-    margin-left: 20px;
+    margin-left: 10px;
     margin-top: -85px;
     opacity: 0.90;
 }
@@ -149,37 +149,37 @@ main {
 #white_block1 {
     background-attachment: scroll;
     margin-left: 10px;
-    margin-top: 10px;
+    margin-top: -5px;
 }
 
 #white_block2 {
     background-attachment: scroll;
     margin-left: 10px;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 #white_block3 {
     background-attachment: scroll;
     margin-left: 10px;
-    margin-top: 50px;
+    margin-top: 17px;
 }
 
 #white_block4 {
     background-attachment: scroll;
     margin-left: 10px;
-    margin-top: 70px;
+    margin-top: 15px;
 }
 
 #white_block5 {
     background-attachment: scroll;
     margin-left: 10px;
-    margin-top: 90px;
+    margin-top: 15px;
 }
 
 #white_block6 {
     background-attachment: scroll;
     margin-left: 10px;
-    margin-top: -165px;
+    margin-top: 20px;
 }
 
 #book_description {
@@ -191,4 +191,12 @@ main {
     background-attachment: scroll;
     margin-left: 10px;
     margin-top: -10px;
+}
+
+#book_name {
+    position: absolute;
+    z-index: 2;
+    margin-top: -75px;
+    margin-left: 30px;
+    color: #8a5834;
 }

@@ -14,19 +14,18 @@
 <body>
 {% include "includes/header.html" %}
 <img id="head_fon" src="{% static 'img/fon.jpg' %}" width="850" height="100">
-<img id="fon_book_static" src="{% static 'img/fon.jpg' %}" width="2000"
+<img id="fon_book_static" src="{% static 'img/fon.jpg' %}" width="1450"
      height="640">
 <main>
-  <img id="white_title" src="{% static 'img/white_block.jpg' %}" width="1320"
+  <img id="white_title" src="{% static 'img/white_block.jpg' %}" width="1350"
        height="45">
 
-
+  <h2 id="book_name">{{ book.name }}</h2>
 
   <div class="row col-md-12">
     <aside class="col-md-4 mb-2 mt-2  shadow-sm">
-
-      <img id="book_foto" src="{{ book.cove }}" alt="..." width="400"
-           height="500">
+      <img id="book_foto" src="{{ book.cove }}" alt="..." width="410"
+           height="510">
     </aside>
     <article class="col-md-2">
 
@@ -58,8 +57,8 @@
            height="40">
       <img id="white_block6" src="{% static 'img/white_block.jpg' %}"
            width="590"
-           height="200">
-      <h2 style="margin-top: -500px; font-size: 40pt">{{ book.name }}</h2>
+           height="225">
+
     </article>
   </div>
 </main>
