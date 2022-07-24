@@ -18,10 +18,9 @@ def books(request):
     return render(request, template, context)
 
 
-def book_detail(request, index):
+def book_detail(request, id):
     template = 'book_detail.html'
-   # books_objects = Book.objects.filter(index=pk)
-    books_objects = get_object_or_404(Book, index=index)
+    books_objects = get_object_or_404(Book, id=id)
     context = {
         'book': books_objects
     }
@@ -34,6 +33,7 @@ def authors(request):
         'title': 'Authors',
     }
     return render(request, template, context)
+
 
 def recommendations(request):
     template = 'recommendations.html'

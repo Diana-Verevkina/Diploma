@@ -9,5 +9,5 @@ urlpatterns = [
     path('authors', views.authors),
     path('recommendations', views.recommendations),
     # path('detail', views.book_details)
-    path('books/<int:index>/', views.book_detail, name='book_detail')
+    path('books/<int:id>/', views.book_detail, name='book_detail')
 ]
