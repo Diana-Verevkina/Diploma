@@ -2,16 +2,67 @@
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-          rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-          crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <title>Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
 </head>
 <body>
-    {% include "includes/header.html" %}
-    <img id = "head_fon" src="{% static 'img/fon.jpg' %}" width="850" height="100">
+{% include "includes/header.html" %}
+<img id="head_fon" src="{% static 'img/fon.jpg' %}" width="850" height="100">
+<img id="fon_book_static" src="{% static 'img/fon.jpg' %}" width="2000"
+     height="640">
+<main>
+  <img id="white_title" src="{% static 'img/white_block.jpg' %}" width="1320"
+       height="45">
+
+
+
+  <div class="row col-md-12">
+    <aside class="col-md-4 mb-2 mt-2  shadow-sm">
+
+      <img id="book_foto" src="{{ book.cove }}" alt="..." width="400"
+           height="500">
+    </aside>
+    <article class="col-md-2">
+
+      <h2 id="book_description">
+        <p>Author:</p>
+        <p>Section:</p>
+        <p>Age:</p>
+        <p>Year:</p>
+        <p>Pages:</p>
+        <p>Description:</p>
+      </h2>
+    </article>
+
+    <article class="col-md-5">
+      <img id="white_block1" src="{% static 'img/white_block.jpg' %}"
+           width="590"
+           height="40">
+      <img id="white_block2" src="{% static 'img/white_block.jpg' %}"
+           width="590"
+           height="40">
+      <img id="white_block3" src="{% static 'img/white_block.jpg' %}"
+           width="590"
+           height="40">
+      <img id="white_block4" src="{% static 'img/white_block.jpg' %}"
+           width="590"
+           height="40">
+      <img id="white_block5" src="{% static 'img/white_block.jpg' %}"
+           width="590"
+           height="40">
+      <img id="white_block6" src="{% static 'img/white_block.jpg' %}"
+           width="590"
+           height="200">
+      <h2 style="margin-top: -500px; font-size: 40pt">{{ book.name }}</h2>
+    </article>
+  </div>
+</main>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Book
 
@@ -18,9 +18,14 @@ def books(request):
     return render(request, template, context)
 
 
-def book_details(request):
+def book_detail(request, index):
     template = 'book_detail.html'
-    return render(request, template)
+   # books_objects = Book.objects.filter(index=pk)
+    books_objects = get_object_or_404(Book, index=index)
+    context = {
+        'book': books_objects
+    }
+    return render(request, template, context)
 
 
 def authors(request):
