@@ -1,30 +1,36 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Главная страница</title>
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-{% include "includes/header.html" %}
-<main>
-  <img id="foto" src="{% static 'img/book.jpg' %}" width="500" height="550">
-  <img id="fon" src="{% static 'img/fon.jpg' %}" width="1000" height="630">
-  <h1>
-    <p id="citation1">Can you smell that?</p>
-    <p id="citation2">These are books...</p>
-  </h1>
-</main>
+{% block title %}
+  "Главная страница"
+{% endblock %}
 
-<footer>
-  <h2 id="foot1">
-    <p>Student: Verevkina Diana </p>
-  </h2>
-  <h2 id="foot2">
-    <p>Group: IU5-82B</p>
-  </h2>
-</footer>
+{% block content %}
+  <section class="a" style="background: rgba(225,180,148,0.65)">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-1 col-lg-1"></div>
+        <div class="col-sm-6 col-lg-6">
+          <img id="foto" src="{% static 'img/book.jpg' %}" width="450"
+               height="500">
+        </div>
+        <div class="col-sm-6 col-lg-4" id="citation">
+          <p>Can you smell that?</p>
+          <p>These are books...</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-</body>
-</html>
+  <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-8"></div>
+        <div class="col-lg-4">
+          <p class="text-center" style="margin-right: -20%"> Student: Verevkina
+            Diana</p>
+          <p class="text-center" style="margin-right: -20%"> Group: IU5-82B</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+{% endblock %}

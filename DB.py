@@ -12,5 +12,5 @@ df = pd.DataFrame(data)
 
 conn = sqlite3.connect('data.db')
 cur = conn.cursor()
-df.to_sql("books", conn)
+df.to_sql("books_book", conn)
 

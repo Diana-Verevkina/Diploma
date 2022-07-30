@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="PY-221.5787.24">
+    <data-source name="data.sqlite3" uuid="a10aaedd-02df-4b2c-8c0b-591ad06158b3">
+      <database-info product="SQLite" version="3.38.0" jdbc-version="2.1" driver-name="SQLite JDBC" driver-version="3.38.0-SNAPSHOT" dbms="SQLITE" exact-version="3.38.0" exact-driver-version="3.38">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <secret-storage>master_key</secret-storage>
+      <auth-provider>no-auth</auth-provider>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+    <data-source name="data2" uuid="200458af-883b-4581-bb05-0847631eba7b">
+      <database-info product="SQLite" version="3.38.0" jdbc-version="2.1" driver-name="SQLite JDBC" driver-version="3.38.0-SNAPSHOT" dbms="SQLITE" exact-version="3.38.0" exact-driver-version="3.38">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <auth-provider>no-auth</auth-provider>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+    <data-source name="data3" uuid="ac07e6da-3611-4e59-aaf4-bf3272db8231">
+      <database-info product="SQLite" version="3.38.0" jdbc-version="2.1" driver-name="SQLite JDBC" driver-version="3.38.0-SNAPSHOT" dbms="SQLITE" exact-version="3.38.0" exact-driver-version="3.38">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <auth-provider>no-auth</auth-provider>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+    <data-source name="Django default" uuid="cf3b33ab-e5a8-46b7-a21c-dc747c00eece">
+      <database-info product="SQLite" version="3.38.0" jdbc-version="2.1" driver-name="SQLite JDBC" driver-version="3.38.0-SNAPSHOT" dbms="SQLITE" exact-version="3.38.0" exact-driver-version="3.38">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <auth-provider>no-auth</auth-provider>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema" qname="@" />
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+  </component>
+</project>

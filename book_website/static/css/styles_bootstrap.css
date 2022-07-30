@@ -1,0 +1,49 @@
+a {
+    text-decoration: none;
+    color: #8a5834;
+}
+
+#BookFord {
+    font-size: 50pt;
+    margin-left: 10%;
+}
+
+#foto {
+    opacity: 0.90
+}
+
+#head_menu {
+    font-size: 20pt;
+}
+
+#citation {
+    color: #8a5834;
+    font-size: 40pt;
+    margin-top: 10%;
+}
+
+footer {
+    color: #8a5834;
+    font-size: 20pt;
+}
+
+#book_name {
+    color: #8a5834;
+    font-size: 25pt;
+    background: white;
+    font-weight: bold;
+}
+
+#book_description {
+    color: #8a5834;
+    font-size: 20pt;
+}
+
+#book_description {
+    color: #8a5834;
+    font-size: 20pt;
+}
+
+small {
+    background: white;
+}

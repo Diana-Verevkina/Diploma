@@ -1,67 +1,42 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Details</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-        crossorigin="anonymous">
-  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<link rel="stylesheet" href="{% static 'css/styles_bootstrap.css' %}">
+{% block title %}
+  "Детали"
+{% endblock %}
 
-</head>
-<body>
-{% include "includes/header.html" %}
-<img id="head_fon" src="{% static 'img/fon.jpg' %}" width="850" height="100">
-<img id="fon_book_static" src="{% static 'img/fon.jpg' %}" width="1450"
-     height="640">
-<main>
-  <img id="white_title" src="{% static 'img/white_block.jpg' %}" width="1350"
-       height="45">
+{% block content %}
+  <section class="a">
+    <div class="container-fluid" style="background: rgba(225,180,148,0.65)">
+      <div class="row">
+        <div class="col-sm-1 col-lg-1"><p></p></div>
 
-  <h2 id="book_name">{{ book.name }}</h2>
+        <div class="col-sm-12 col-lg-12">
+          <p id="book_name">{{ book.name }}</p>
+        </div>
 
-  <div class="row col-md-12">
-    <aside class="col-md-4 mb-2 mt-2  shadow-sm">
-      <img id="book_foto" src="{{ book.cove }}" alt="..." width="410"
-           height="510">
-    </aside>
-    <article class="col-md-2">
+        <div class="col-sm-4 col-lg-4 shadow-sm">
+          <div class="col">
+            <div class="card h-100" >
+              <img src="{{ book.cove }}" class="card-img-top" alt="...">
+            </div>
+          </div>
+        </div>
 
-      <h2 id="book_description">
-        <p>Author:</p>
-        <p>Section:</p>
-        <p>Age:</p>
-        <p>Year:</p>
-        <p>Pages:</p>
-        <p>Description:</p>
-      </h2>
-    </article>
+        <div class="col-sm-8 col-lg-8" id="book_description">
+          <p>Author: <small> {{ book.author }} </small> </p>
+          <p>Section: <small> {{ book.section }} </small> </p>
+          <p>Age: <small> {{ book.age }} </small> </p>
+          <p>Year: <small> {{ book.year }} </small> </p>
+          <p>Pages: <small> {{ book.pages }} </small> </p>
+          <p>Description: <small> {{ book.description }} </small> </p>
+        </div>
 
-    <article class="col-md-5">
-      <img id="white_block1" src="{% static 'img/white_block.jpg' %}"
-           width="590"
-           height="40">
-      <img id="white_block2" src="{% static 'img/white_block.jpg' %}"
-           width="590"
-           height="40">
-      <img id="white_block3" src="{% static 'img/white_block.jpg' %}"
-           width="590"
-           height="40">
-      <img id="white_block4" src="{% static 'img/white_block.jpg' %}"
-           width="590"
-           height="40">
-      <img id="white_block5" src="{% static 'img/white_block.jpg' %}"
-           width="590"
-           height="40">
-      <img id="white_block6" src="{% static 'img/white_block.jpg' %}"
-           width="590"
-           height="225">
+        <div class="col-sm-12 col-lg-12">
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    </article>
-  </div>
-</main>
-
-</body>
-</html>
+{% endblock %}
