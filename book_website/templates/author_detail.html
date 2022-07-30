@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles_bootstrap.css' %}">
+{% block title %}
+  "Детали"
+{% endblock %}
+
+{% block content %}
+  <section class="a">
+    <div class="container-fluid" style="background: rgba(225,180,148,0.65)">
+      <div class="row">
+        <div class="col-sm-1 col-lg-1"><p></p></div>
+
+        <div class="col-sm-12 col-lg-12">
+          <p id="author_name">{{ author.author_name }}</p>
+        </div>
+
+        <div class="col-sm-4 col-lg-4 shadow-sm">
+          <div class="col">
+            <div class="card h-100" >
+              <img src="{{ author.author_photo }}" class="card-img-top" alt="...">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-8 col-lg-8" id="book_description">
+          <p>Books:</p>
+          {% for book in book_list %}
+            <a id="book_link"
+             href="{% url 'books:book_detail' book.id %}">{{ book.name }}</a>
+            <hr>
+          {% endfor %}
+        </div>
+        <div class="col-sm-12 col-lg-12">
+          <p></p>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

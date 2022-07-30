@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Book
+from .models import Book, Author
 
 
 class BookAdmin(admin.ModelAdmin):
@@ -9,6 +9,10 @@ class BookAdmin(admin.ModelAdmin):
     list_per_page = 10
 
 
-admin.site.register(Book, BookAdmin)
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ('id', 'author_name')
 
+
+admin.site.register(Book, BookAdmin)
+admin.site.register(Author, AuthorAdmin)
 

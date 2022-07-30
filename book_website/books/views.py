@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Book
+from .models import Book, Author
 
 
 def index(request):
@@ -27,10 +27,23 @@ def book_detail(request, id):
     return render(request, template, context)
 
 
+def author_detail(request, id):
+    template = 'author_detail.html'
+    author = get_object_or_404(Author, id=id)
+    book_list = author.books.distinct()
+    context = {
+        'author': author,
+        'book_list': book_list,
+    }
+    return render(request, template, context)
+
+
 def authors(request):
     template = 'authors.html'
+    author_objects = Author.objects.all()
     context = {
         'title': 'Authors',
+        'authors': author_objects,
     }
     return render(request, template, context)
 

@@ -34,6 +34,13 @@ footer {
     font-weight: bold;
 }
 
+#author_name{
+    color: #8a5834;
+    font-size: 25pt;
+    background: white;
+    font-weight: bold;
+}
+
 #book_description {
     color: #8a5834;
     font-size: 20pt;
