@@ -1,10 +1,55 @@
-
 {% extends "base.html" %}
 {% block title %}Регистрация{% endblock %}
 {% block content %}
-  <form method="post" action="{% url 'users:signup' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Зарегистрироваться">
-  </form>
-{% endblock %} 
+  <div class="row justify-content-center" style="background: rgba(225,180,148,0.85)">
+    <div class="col-md-8 p-5">
+      <div class="card">
+        <div class="card-header" style="background: #bd9379; color: white; font-weight: bold">
+          Регистрация
+        </div>
+        <div class="card-body" style="background: rgba(255,235,213,0.53)">
+          {# Этот блок будет показан, если в форме есть ошибки #}
+          {% if form.errors %}
+            {% for field in form %}
+              {% for error in field.errors %}            
+                <div class="alert alert-danger">
+                  {{ error|escape }}
+                </div>
+              {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+              <div class="alert alert-danger">
+                {{ error|escape }}
+              </div>
+            {% endfor %}
+          {% endif %}
+
+            <form method="post" action="{% url 'users:signup' %}">
+              {% csrf_token %}
+              {% for field in form %}
+              <div class="form-group row my-3 p-3">
+                <label for="{{ field.id_for_label }}">
+                  {{ field.label }}
+                  {% if field.field.required %}
+                    <span class="required text-danger">*</span>
+                  {% endif %}
+                </label>    
+                {{ field }}
+                {% if field.help_text %}
+                  <small id="{{ field.id_for_label }}-help" class="form-text text-muted">
+                    {{ field.help_text|safe }}
+                  </small>
+                {% endif %}
+              </div>
+              {% endfor %}
+              <div class="col-md-6 offset-md-4">
+                <button type="submit" class="btn btn-primary" style="background: #72513e">
+                  Зарегистрироваться
+                </button>
+              </div>
+            </form>
+          </div> <!-- card body -->
+        </div> <!-- card -->
+      </div> <!-- col -->
+  </div> <!-- row -->
+{% endblock %}
