@@ -24,7 +24,8 @@
         </div>
 
         <div class="col-sm-8 col-lg-8" id="book_description">
-          <p>Author: <small> {{ book.author }} </small> </p>
+          <p>Author: <small><a id="book_link"
+             href="{% url 'books:author_detail' book.author_id.id %}">{{ book.author }}</a> </small> </p>
           <p>Section: <small> {{ book.section }} </small> </p>
           <p>Age: <small> {{ book.age }} </small> </p>
           <p>Year: <small> {{ book.year }} </small> </p>
