@@ -1,6 +1,45 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-lg-8"></div>
+    <div class="col-lg-8">
+      <nav class="navbar navbar-light" style="margin-left: -3%">
+        <div class="container">
+          <ul class="nav nav-pills">
+            {% if user.is_authenticated %}
+              <li style="color: #4d3626; margin-top: 8px; background: bisque">
+                {{ user.username }}
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="" style="color: #4d3626">Новая
+                  книга</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<!--  -->" style="color: #4d3626">Новый
+                  автор</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link-light" href="{% url 'users:password_change' %}"
+                   style="color: #4d3626">Изменить пароль</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link-light" href="{% url 'users:logout' %}"
+                   style="color: #4d3626">Выйти</a>
+              </li>
+
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link link-light" href="{% url 'users:login' %}"
+                   style="color: #4d3626">Войти</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link link-light" href="{% url 'users:signup' %}"
+                   style="color: #4d3626">Регистрация</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+
+    </div>
     <div class="col-lg-4" style="background: #bd9379">
       <ul id="head_menu">
         <li style="display: inline-block;"><a href="/books">Books</a></li>
