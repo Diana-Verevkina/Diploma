@@ -9,11 +9,11 @@
                 {{ user.username }}
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="" style="color: #4d3626">Новая
+                <a class="nav-link" href="{% url 'books:book_create' %}" style="color: #4d3626">Новая
                   книга</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="<!--  -->" style="color: #4d3626">Новый
+                <a class="nav-link" href="{% url 'books:author_create' %}" style="color: #4d3626">Новый
                   автор</a>
               </li>
               <li class="nav-item">

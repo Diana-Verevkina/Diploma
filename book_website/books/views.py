@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
+
+from .forms import BookForm, AuthorForm
 from .models import Book, Author
 from django.core.paginator import Paginator
 
@@ -33,6 +35,15 @@ def book_detail(request, id):
     return render(request, template, context)
 
 
+def book_create(request):
+    form = BookForm(request.POST or None, files=request.FILES or None, )
+    if not form.is_valid():
+        return render(request, 'create_book.html', {'form': form})
+    book = form.save(commit=False)
+    book.save()
+    return redirect('books:books')
+
+
 def author_detail(request, id):
     template = 'author_detail.html'
     author = get_object_or_404(Author, id=id)
@@ -42,6 +53,15 @@ def author_detail(request, id):
         'book_list': book_list,
     }
     return render(request, template, context)
+
+
+def author_create(request):
+    form = AuthorForm(request.POST or None, files=request.FILES or None, )
+    if not form.is_valid():
+        return render(request, 'create_author.html', {'form': form})
+    author = form.save(commit=False)
+    author.save()
+    return redirect('books:authors')
 
 
 def authors(request):

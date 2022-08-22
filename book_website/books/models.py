@@ -3,7 +3,8 @@ from django.db import models
 
 class Author(models.Model):
     author_name = models.CharField(max_length=50)
-    author_photo = models.TextField()
+    author_photo = models.TextField(blank=True, null=True)
+    photo = models.ImageField('Картинка', upload_to='authors/', blank=True)
 
     def __str__(self):
         return self.author_name
@@ -24,6 +25,7 @@ class Book(models.Model):
     author_id = models.ForeignKey(Author, verbose_name='Автор',
                                   on_delete=models.SET_NULL, blank=True,
                                   null=True, related_name='books')
+    image = models.ImageField('Картинка', upload_to='books/', blank=True)
 
     def __str__(self):
         return str(self.id)

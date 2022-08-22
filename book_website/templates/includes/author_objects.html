@@ -1,8 +1,15 @@
+{% load thumbnail %}
 <div class="row row-cols-1 row-cols-md-4 g-4">
   {% for author in page_obj %}
     <div class="col">
       <div class="card h-100">
-        <img src="{{ author.author_photo }}" class="card-img-top" alt="...">
+        {% if author.author_photo %}
+          <img src="{{ author.author_photo }}" class="card-img-top" alt="...">
+        {% else %}
+          {% thumbnail author.photo "960x339" upscale=True as im %}
+            <img class="card-img my-2" src="{{ im.url }}">
+          {% endthumbnail %}
+        {% endif %}
         <div class="card-body">
           <h5 class="card-title">{{ author.author_name }}</h5>
           <a id="book_link"
