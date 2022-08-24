@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load thumbnail %}
 <link rel="stylesheet" href="{% static 'css/styles_bootstrap.css' %}">
 {% block title %}
   "Детали"
@@ -18,7 +19,13 @@
         <div class="col-sm-4 col-lg-4 shadow-sm">
           <div class="col">
             <div class="card h-100" >
-              <img src="{{ author.author_photo }}" class="card-img-top" alt="...">
+              {% if author.author_photo %}
+                <img src="{{ author.author_photo }}" class="card-img-top" alt="...">
+              {% else %}
+                {% thumbnail author.photo "960x339" upscale=True as im %}
+                  <img class="card-img my-2" src="{{ im.url }}">
+                {% endthumbnail %}
+              {% endif %}
             </div>
           </div>
         </div>
@@ -30,7 +37,14 @@
              href="{% url 'books:book_detail' book.id %}">{{ book.name }}</a>
             <hr>
           {% endfor %}
+        {% if may_delete %}
+          <a class="btn btn-primary"
+             href="{% url 'books:author_delete' id=author.id %}" style="background: darkred">
+            удалить запись
+          </a>
+          {% endif %}
         </div>
+
         <div class="col-sm-12 col-lg-12">
           <p></p>
         </div>

@@ -10,19 +10,22 @@
       <div class="col-md-8 p-5">
         <div class="card">
           <div class="card-header" style="background: #bd9379; color: white; font-weight: bold">
-            Добавить книгу
+            {% if form.instance.pk %} Редактировать книгу
+            {% else %} Добавить книгу {% endif %}
           </div>
           <div class="card-body" style="background: rgba(255,235,213,0.53)">
             {% include "includes/block_errors.html" %}
             <form method="post" enctype="multipart/form-data"
-
-                  action="{% url 'books:book_create' %}">
+                  {% if form.instance.pk %}
+                      action="{% url 'books:book_edit' form.instance.pk %}"
+                    {% else %}
+                      action="{% url 'books:book_create' %}" {% endif %}>
               {% csrf_token %}
               {% include "includes/form.html" %}
               <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary"  style="background: #72513e">
-                  Сохранить
-
+                  {% if form.instance.pk %} Сохранить
+                  {% else %} Добавить {% endif %}
                 </button>
               </div>
             </form>

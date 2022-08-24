@@ -1,0 +1,42 @@
+{% load user_filters %}
+
+{% if user.is_authenticated %}
+  <div class="card my-4">
+    <h5 class="card-header"
+        style="background: #bd9379; color: white; font-weight: bold">
+      Добавить комментарий:</h5>
+    <div class="card-body" style="background: rgba(255,235,213,0.53)">
+      <form method="post" action="{% url 'books:add_comment' book.id %}">
+        {% csrf_token %}
+        <div class="form-group mb-2">
+          {{ form.text|addclass:"form-control" }}
+        </div>
+        <button type="submit" class="btn btn-primary"
+                style="background: #72513e">
+          Отправить
+        </button>
+      </form>
+    </div>
+  </div>
+{% endif %}
+
+{% for comment in comments %}
+  <div class="media mb-4">
+    <div class="media-body" style="background: rgba(255,241,222,0.63)">
+      <h5 class="mt-0">
+        {{ comment.author.username }}
+        </a>
+      </h5>
+      <p>
+        {{ comment.text|linebreaksbr }}
+      </p>
+      {% if user.is_authenticated and comment.author == user or user.username == 'diana'%}
+        <a style="color: darkred"
+           href="{% url 'books:delete_comment' id=book.id comment_id=comment.id %}">
+          удалить комментарий
+        </a>
+      {% endif %}
+    </div>
+
+  </div>
+{% endfor %}

@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Book, Author
+from .models import Book, Author, Comment
 
 
 class BookForm(forms.ModelForm):
@@ -18,3 +18,11 @@ class AuthorForm(forms.ModelForm):
     class Meta:
         model = Author
         fields = ('author_name', 'photo')
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('text',)
+        labels = {'text': 'Текст комментария'}
+        help_texts = {'text': 'Введите текст комментария'}
