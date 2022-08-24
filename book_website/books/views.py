@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from django.views.generic import ListView
@@ -44,6 +45,7 @@ def book_detail(request, id):
     return render(request, template, context)
 
 
+@login_required
 def book_create(request):
     form = BookForm(request.POST or None, files=request.FILES or None, )
     if not form.is_valid():
@@ -53,6 +55,7 @@ def book_create(request):
     return redirect('books:books')
 
 
+@login_required
 def book_edit(request, id):
     book = get_object_or_404(Book, id=id)
 
@@ -64,6 +67,7 @@ def book_edit(request, id):
     return render(request, 'create_book.html', {'form': form})
 
 
+@login_required
 def author_edit(request, id):
     author = get_object_or_404(Author, id=id)
 
@@ -91,6 +95,7 @@ def author_detail(request, id):
     return render(request, template, context)
 
 
+@login_required
 def author_create(request):
     form = AuthorForm(request.POST or None, files=request.FILES or None, )
     if not form.is_valid():
@@ -115,18 +120,21 @@ def authors(request):
     return render(request, template, context)
 
 
+@login_required
 def book_delete(request, id):
     book = get_object_or_404(Book, id=id)
     book.delete()
     return redirect('books:books')
 
 
+@login_required
 def author_delete(request, id):
     author = get_object_or_404(Author, id=id)
     author.delete()
     return redirect('books:authors')
 
 
+@login_required
 def recommendations(request):
     template = 'recommendations.html'
     context = {
@@ -135,6 +143,7 @@ def recommendations(request):
     return render(request, template, context)
 
 
+@login_required
 def add_comment(request, id):
     book = get_object_or_404(Book, id=id)
     form = CommentForm(request.POST or None)
@@ -146,6 +155,7 @@ def add_comment(request, id):
     return redirect('books:book_detail', id=id)
 
 
+@login_required
 def delete_comment(request, id, comment_id):
     Comment.objects.filter(id=comment_id).delete()
     return redirect('books:book_detail', id=id)
@@ -163,7 +173,6 @@ def search_book(request):
         return redirect('books:book_detail', id=object_list.first().id)
     except:
         return redirect('books:object_not_found')
-
 
 
 def search_author(request):
