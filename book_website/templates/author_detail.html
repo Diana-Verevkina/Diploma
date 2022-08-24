@@ -37,6 +37,13 @@
              href="{% url 'books:book_detail' book.id %}">{{ book.name }}</a>
             <hr>
           {% endfor %}
+        {% if user.username == 'diana' %}
+          <a class="btn btn-primary" style="background: #c79577; border-color: #8a5834"
+             href="{% url 'books:author_edit' id=author.id %}">
+          редактировать запись
+        {% else %}
+          <span style='color: darkred'> редактирование недоступно </span>
+        {% endif %}
         {% if may_delete %}
           <a class="btn btn-primary"
              href="{% url 'books:author_delete' id=author.id %}" style="background: darkred">

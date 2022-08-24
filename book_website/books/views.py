@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
+from django.views.generic import ListView
 
 from .forms import BookForm, AuthorForm, CommentForm
 from .models import Book, Author, Comment
@@ -61,6 +62,17 @@ def book_edit(request, id):
         form.save()
         return redirect('books:book_detail', id)
     return render(request, 'create_book.html', {'form': form})
+
+
+def author_edit(request, id):
+    author = get_object_or_404(Author, id=id)
+
+    form = AuthorForm(request.POST or None, files=request.FILES or None,
+                      instance=author)
+    if form.is_valid():
+        form.save()
+        return redirect('books:author_detail', id)
+    return render(request, 'create_author.html', {'form': form})
 
 
 def author_detail(request, id):
@@ -135,7 +147,29 @@ def add_comment(request, id):
 
 
 def delete_comment(request, id, comment_id):
-
     Comment.objects.filter(id=comment_id).delete()
-
     return redirect('books:book_detail', id=id)
+
+
+def object_not_found(request):
+    template = 'object_not_found.html'
+    return render(request, template)
+
+
+def search_book(request):
+    query = request.GET.get('q')
+    try:
+        object_list = Book.objects.filter(name__icontains=query)
+        return redirect('books:book_detail', id=object_list.first().id)
+    except:
+        return redirect('books:object_not_found')
+
+
+
+def search_author(request):
+    query = request.GET.get('q')
+    try:
+        object_list = Author.objects.filter(author_name__icontains=query)
+        return redirect('books:author_detail', id=object_list.first().id)
+    except:
+        return redirect('books:object_not_found')

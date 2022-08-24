@@ -8,11 +8,21 @@
   <section class="a" style="background: rgba(225,180,148,0.65)">
     <div class="container-fluid">
       <div class="row">
+        <p></p>
+
+        <form action="{% url 'books:search_book'%}" method="get">
+          <input name="q" type="text" placeholder="Search...">
+          <button type="submit" class="btn btn-primary"
+                style="background: #72513e; border-color: #41220c">
+          Найти
+        </button>
+        </form>
+
         {% include "includes/books_objects.html" %}
       </div>
     </div>
-  {% include 'paginator.html' %}
-  <p style="color: rgba(225,180,148,0.65)">-</p>
+    {% include 'paginator.html' %}
+    <p style="color: rgba(225,180,148,0.65)">-</p>
   </section>
 
 {% endblock %}
