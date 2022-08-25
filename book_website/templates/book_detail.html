@@ -33,7 +33,7 @@
 
         <div class="col-sm-8 col-lg-8" id="book_description">
           <p>Author: <small><a id="book_link"
-                               href="{% url 'books:author_detail' book.author_id.id %}">{{ book.author }}</a>
+                               href="{% url 'books:author_detail' book.author_id.id %}">{{ book.author_id }}</a>
           </small></p>
           <p>Section: <small> {{ book.section }} </small></p>
           <p>Age: <small> {{ book.age }} </small></p>

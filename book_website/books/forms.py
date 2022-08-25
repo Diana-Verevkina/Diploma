@@ -6,7 +6,7 @@ from .models import Book, Author, Comment
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ('name', 'author', 'section', 'publish', 'age', 'year',
+        fields = ('name', 'section', 'publish', 'age', 'year',
                   'pages', 'description', 'author_id', 'image')
         """labels = {'text': 'Введите текст', 'group': 'Выберите группу'}
         help_texts = {'text': 'Здесь напишите свой пост',
