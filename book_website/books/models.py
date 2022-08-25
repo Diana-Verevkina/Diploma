@@ -15,7 +15,7 @@ class Author(models.Model):
 
 class Book(models.Model):
     name = models.CharField(max_length=200)
-    author = models.CharField(max_length=50)
+    # author = models.CharField(max_length=50)
     section = models.CharField(max_length=50)
     publish = models.CharField(max_length=50, default=None)
     age = models.CharField(max_length=5)

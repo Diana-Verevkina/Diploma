@@ -170,7 +170,16 @@ def search_book(request):
     query = request.GET.get('q')
     try:
         object_list = Book.objects.filter(name__icontains=query)
-        return redirect('books:book_detail', id=object_list.first().id)
+        paginator = Paginator(object_list, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context = {
+            'title': 'Books',
+            'books': object_list,
+            'page_obj': page_obj,
+        }
+        return render(request, 'books.html', context)
+        # return redirect('books:book_detail', id=object_list.first().id)
     except:
         return redirect('books:object_not_found')
 
@@ -179,6 +188,15 @@ def search_author(request):
     query = request.GET.get('q')
     try:
         object_list = Author.objects.filter(author_name__icontains=query)
-        return redirect('books:author_detail', id=object_list.first().id)
+        paginator = Paginator(object_list, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context = {
+            'title': 'Authors',
+            'authors': object_list,
+            'page_obj': page_obj,
+        }
+        return render(request, 'authors.html', context)
+        # return redirect('books:author_detail', id=object_list.first().id)
     except:
         return redirect('books:object_not_found')
