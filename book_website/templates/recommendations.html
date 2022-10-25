@@ -1,13 +1,20 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>{{ title }}</title>
-</head>
-<body>
-{% include "includes/header.html" %}
-<img id="head_fon" src="{% static 'img/fon.jpg' %}" width="850" height="100">
-<img id="fon_book" src="{% static 'img/fon.jpg' %}" width="2000" height="600">
-</body>
-</html>
+{% block title %}
+  "Рекомендации"
+{% endblock %}
+
+{% block content %}
+  <section class="a" style="background: rgba(225,180,148,0.65)">
+    <div class="container-fluid">
+      <div class="row">
+        <p></p>
+
+
+      </div>
+    </div>
+    {% include 'paginator.html' %}
+    <p style="color: rgba(225,180,148,0.65)">-</p>
+  </section>
+
+{% endblock %}

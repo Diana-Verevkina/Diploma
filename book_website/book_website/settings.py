@@ -24,7 +24,14 @@ SECRET_KEY = 'a*txe2m(-3+-s6epv5bygnf2efs^+8k4e29fbtjtg^v)k+kmo&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '[::1]',
+    'testserver',
+    'www.diva22.pythonanywhere.com',
+    'diva22.pythonanywhere.com',
+]
 
 # Application definition
 
