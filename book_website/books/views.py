@@ -28,6 +28,53 @@ def books(request):
     return render(request, template, context)
 
 
+@login_required
+def make_favore(request, id):
+    template = 'make_favore.html'
+    favore = get_object_or_404(Book, id=id)
+    favore.is_favore = True
+    favore.save()
+
+    context = {
+        'title': 'Favore',
+        'book': favore,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def make_not_favore(request, id):
+    template = 'make_not_favore.html'
+    not_favore = get_object_or_404(Book, id=id)
+    not_favore.is_favore = False
+    not_favore.save()
+
+    context = {
+        'title': 'Favore',
+        'book': not_favore,
+    }
+    return render(request, template, context)
+
+
+@login_required
+def favorites(request):
+    template = 'favorites.html'
+    """make_favore = get_object_or_404(Book, id=id)
+    make_favore.is_favore = True
+    make_favore.save()"""
+    books_objects = Book.objects.order_by('-year').filter(is_favore=True)
+    #book_list = Book.objects.all()
+    paginator = Paginator(books_objects, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'title': 'Books',
+        'books': books_objects,
+        'page_obj': page_obj,
+    }
+    return render(request, template, context)
+
+
 def book_detail(request, id):
     template = 'book_detail.html'
     books_objects = get_object_or_404(Book, id=id)

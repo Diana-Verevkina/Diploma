@@ -29,6 +29,7 @@ class Book(models.Model):
                                   on_delete=models.SET_NULL, blank=True,
                                   null=True, related_name='books')
     image = models.ImageField('Картинка', upload_to='books/', blank=True)
+    is_favore = models.BooleanField(default=False, blank=True, null=True)
 
     def __str__(self):
         return str(self.id)

@@ -41,18 +41,26 @@
           <p>Pages: <small> {{ book.pages }} </small></p>
           <p>Description: <small> {{ book.description }} </small></p>
           {% if user.username == 'diana' %}
-          <a class="btn btn-primary" style="background: #c79577; border-color: #8a5834"
-             href="{% url 'books:book_edit' id=book.id %}">
-          редактировать запись
-        {% else %}
-          <span style='color: darkred'> редактирование недоступно </span>
-        {% endif %}
+            <a class="btn btn-primary"
+               style="background: #c79577; border-color: #8a5834"
+               href="{% url 'books:book_edit' id=book.id %}">
+            редактировать запись
+          {% else %}
+            <span style='color: darkred'> редактирование недоступно </span>
+          {% endif %}
           {% if may_delete %}
             <a class="btn btn-primary"
                href="{% url 'books:book_delete' id=book.id %}"
                style="background: darkred; border-color: #641010">
               удалить запись
             </a>
+          {% endif %}
+          {% if book.is_favore == True %}
+            <a id="book_link" href="{% url 'books:make_not_favore' book.id %}"
+               style="font-size: 20pt; color: darkred">&#9829;</a>
+          {% else %}
+            <a id="book_link" href="{% url 'books:make_favore' book.id %}"
+               style="font-size: 20pt; color: darkred">&#9825;</a>
           {% endif %}
 
         </div>

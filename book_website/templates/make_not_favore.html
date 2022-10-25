@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+  "Книги"
+{% endblock %}
+
+{% block content %}
+  <div class="row justify-content-center" style="background: rgba(225,180,148,0.85)">
+      <div class="col-md-8 p-5">
+        <div class="card">
+          <div class="card-header" style="background: #bd9379; color: white; font-weight: bold">
+            Книга удалена из избранного
+          </div>
+          <div class="card-body" style="background: rgba(255,235,213,0.53)">
+            <p>Книга '{{ book.name }}' удалена из избранного</p>
+          </div> <!-- card body -->
+        </div> <!-- card -->
+      </div> <!-- col -->
+    <p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p>
+
+    </p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+    </div> <!-- row -->
+
+{% endblock %}
