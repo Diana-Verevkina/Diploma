@@ -1,0 +1,25 @@
+{% load thumbnail %}
+<div class="row row-cols-1 row-cols-md-4 g-4">
+  {% for book in page_obj %}
+    <div class="col">
+      <div class="card h-100">
+        {% if book.book.cove %}
+          <img src="{{ book.book.cove }}" class="card-img-top" alt="...">
+        {% else %}
+          {% thumbnail book.book.image "960x339" upscale=True as im %}
+            <img class="card-img my-2" src="{{ im.url }}">
+          {% endthumbnail %}
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ book.book.name }}</h5>
+          <p class="card-text">{{ book.book.author }}</p>
+          <p class="card-text">{{ book.book.age }}</p>
+          <a id="book_link" href="{% url 'books:book_detail' book.book.id %}">more
+            detailed</a>
+          <p></p>
+            <a id="book_link" href="{% url 'books:make_not_favore' book.book.id %}" style="font-size: 20pt; color: darkred">&#9829;</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

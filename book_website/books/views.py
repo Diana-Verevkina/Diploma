@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.views.generic import ListView
 
 from .forms import BookForm, AuthorForm, CommentForm
-from .models import Book, Author, Comment
+from .models import Book, Author, Comment, FavoreBook
 from django.core.paginator import Paginator
 
 
@@ -31,13 +31,14 @@ def books(request):
 @login_required
 def make_favore(request, id):
     template = 'make_favore.html'
-    favore = get_object_or_404(Book, id=id)
-    favore.is_favore = True
-    favore.save()
+    favorite_book = get_object_or_404(Book, id=id)
+    #favorite_book.is_favore = True
+    #favorite_book.save()
+    FavoreBook.objects.get_or_create(person=request.user, book=get_object_or_404(Book, id=id))
 
     context = {
         'title': 'Favore',
-        'book': favore,
+        'book': favorite_book,
     }
     return render(request, template, context)
 
@@ -46,8 +47,10 @@ def make_favore(request, id):
 def make_not_favore(request, id):
     template = 'make_not_favore.html'
     not_favore = get_object_or_404(Book, id=id)
-    not_favore.is_favore = False
-    not_favore.save()
+    #not_favore.is_favore = False
+    #not_favore.save()
+    FavoreBook.objects.filter(person=request.user, book=get_object_or_404(Book, id=id)).delete()
+
 
     context = {
         'title': 'Favore',
@@ -59,11 +62,11 @@ def make_not_favore(request, id):
 @login_required
 def favorites(request):
     template = 'favorites.html'
-    """make_favore = get_object_or_404(Book, id=id)
-    make_favore.is_favore = True
-    make_favore.save()"""
-    books_objects = Book.objects.order_by('-year').filter(is_favore=True)
-    #book_list = Book.objects.all()
+
+    books_objects = FavoreBook.objects.filter(person=request.user)
+    #books_objects = Book.objects.filter(favorite_books__user = request.user)
+
+    #books_objects = Book.objects.order_by('-year').filter(is_favore=True)
     paginator = Paginator(books_objects, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
