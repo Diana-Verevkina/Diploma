@@ -4,15 +4,6 @@ from django.db import models
 User = get_user_model()
 
 
-"""class PersonFavore(models.Model):
-    #isFavore = models.BooleanField(default=False, blank=True, null=True)
-    person = models.ForeignKey(
-        User, verbose_name='Пользователь, который поставил like',
-        on_delete=models.CASCADE, blank=True,
-        null=True, related_name='person',
-        help_text='Ссылка пользователя, который поставил like')
-"""
-
 class Author(models.Model):
     author_name = models.CharField(max_length=50)
     author_photo = models.TextField(blank=True, null=True)
@@ -46,7 +37,6 @@ class Book(models.Model):
 
 
 class FavoreBook(models.Model):
-    #person = models.ForeignKey(PersonFavore, on_delete=models.CASCADE)
     person = models.ForeignKey(
         User, verbose_name='Пользователь, который поставил like',
         on_delete=models.CASCADE, blank=True,

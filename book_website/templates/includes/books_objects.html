@@ -17,11 +17,14 @@
           <a id="book_link" href="{% url 'books:book_detail' book.id %}">more
             detailed</a>
           <p></p>
-          {% if book.is_favore == True %}
+          <!-- {% if book.is_favore == True %}
             <a id="book_link" href="{% url 'books:make_favore' book.id %}" style="font-size: 20pt; color: darkred">&#9829;</a>
           {% else %}
             <a id="book_link" href="{% url 'books:make_favore' book.id %}" style="font-size: 20pt; color: darkred">&#9825;</a>
-          {% endif %}
+          {% endif %} !-->
+        <a id="book_link" href="{% url 'books:make_favore' book.id %}" style="font-size: 20pt; color: darkred">&#9825;</a>
+
+
         </div>
       </div>
     </div>
