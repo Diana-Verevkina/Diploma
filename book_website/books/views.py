@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.views.generic import ListView
 
 from .forms import BookForm, AuthorForm, CommentForm
-from .models import Book, Author, Comment, FavoreBook
+from .models import Book, Author, Comment, FavoreBook, User
 from django.core.paginator import Paginator
 
 
@@ -20,10 +20,21 @@ def books(request):
     paginator = Paginator(book_list, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+    favore_books = FavoreBook.objects.filter(person=request.user)
+
+    test = favore_books.first().person.FavoreBook.all()
+    #test2 = Book.objects.filter(favorite_books__user=request.user)
+    test3 = request.user.FavoreBook.all()
+    test4 = Book.objects.get(id=8)
+    test4.favorite_books.all()
+    print(test3)
+    print(test4)
+
     context = {
         'title': 'Books',
         'books': books_objects,
         'page_obj': page_obj,
+        'favore_books': favore_books,
     }
     return render(request, template, context)
 
@@ -212,7 +223,7 @@ def search_book(request):
         context = {
             'title': 'Books',
             'books': object_list,
-            'page_obj': page_obj,
+            'page_obj': page_obj
         }
         return render(request, 'books.html', context)
     except:

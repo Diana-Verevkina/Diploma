@@ -30,10 +30,9 @@ class Book(models.Model):
                                   null=True, related_name='books')
     image = models.ImageField('Картинка', upload_to='books/', blank=True)
     is_favore = models.BooleanField(default=False, blank=True, null=True)
-    #favorites = models.ManyToManyField(User, through='FavoreBook')
 
-    def __str__(self):
-        return str(self.id)
+    """def __str__(self):
+        return str(self.name)"""
 
 
 class FavoreBook(models.Model):

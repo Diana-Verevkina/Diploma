@@ -18,11 +18,23 @@
             detailed</a>
           <p></p>
           <!-- {% if book.is_favore == True %}
-            <a id="book_link" href="{% url 'books:make_favore' book.id %}" style="font-size: 20pt; color: darkred">&#9829;</a>
+            <a id="book_link" href="{% url 'books:make_favore' book.id %}
+            " style="font-size: 20pt; color: darkred">&#9829;</a>
           {% else %}
-            <a id="book_link" href="{% url 'books:make_favore' book.id %}" style="font-size: 20pt; color: darkred">&#9825;</a>
+            <a id="book_link" href="{% url 'books:make_favore' book.id %}
+            " style="font-size: 20pt; color: darkred">&#9825;</a>
           {% endif %} !-->
-        <a id="book_link" href="{% url 'books:make_favore' book.id %}" style="font-size: 20pt; color: darkred">&#9825;</a>
+          <!-- <a id="book_link" href="{% url 'books:make_favore' book.id %}" style="font-size: 20pt; color: darkred">&#9825;</a> !-->
+
+          {% for f_book in favore_books %}
+
+            {% if book == f_book.book %}
+              <a id="book_link" href="{% url 'books:make_not_favore' book.id %}"
+                 style="font-size: 20pt; color: darkred">&#9829;</a>
+
+            {% endif %}
+
+          {% endfor %}
 
 
         </div>
