@@ -32,12 +32,14 @@ urlpatterns = [
     path('/authors/<int:id>/delete', views.author_delete, name='author_delete'),
 
     path('search_book/', views.search_book, name='search_book'),
+    # path('search_book_recommend/', views.search_book_recommend, name='search_book_recommend'),
     path('search_author/', views.search_author, name='search_author'),
 
     path('object_not_found/', views.object_not_found, name='object_not_found'),
 
     path('favorites/', views.favorites, name='favorites'),
     path('make_favore/<int:id>/', views.make_favore, name='make_favore'),
-    path('make_not_favore/<int:id>/', views.make_not_favore, name='make_not_favore'),
+    path('make_not_favore/<int:id>/', views.make_not_favore,
+         name='make_not_favore'),
 
 ]

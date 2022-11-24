@@ -10,6 +10,16 @@
       <div class="row">
         <p></p>
 
+        <form action="{% url 'books:search_book_recommend'%}" method="get">
+          <input name="q" type="text" placeholder="Search...">
+          <button type="submit" class="btn btn-primary"
+                style="background: #72513e; border-color: #41220c">
+          Найти
+        </button>
+        </form>
+        <p>{{ recommend_books }}</p>
+        {% include "includes/books_objects.html" %}
+
 
       </div>
     </div>

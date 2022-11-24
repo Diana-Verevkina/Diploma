@@ -6,6 +6,7 @@ from django.views.generic import ListView
 from .forms import BookForm, AuthorForm, CommentForm
 from .models import Book, Author, Comment, FavoreBook, User
 from django.core.paginator import Paginator
+from .recommendations import recommend
 
 
 def index(request):
@@ -22,14 +23,6 @@ def books(request):
     page_obj = paginator.get_page(page_number)
     favore_books = FavoreBook.objects.filter(person=request.user)
 
-    test = favore_books.first().person.FavoreBook.all()
-    #test2 = Book.objects.filter(favorite_books__user=request.user)
-    test3 = request.user.FavoreBook.all()
-    test4 = Book.objects.get(id=8)
-    test4.favorite_books.all()
-    print(test3)
-    print(test4)
-
     context = {
         'title': 'Books',
         'books': books_objects,
@@ -38,6 +31,49 @@ def books(request):
     }
     return render(request, template, context)
 
+
+@login_required
+def recommendations(request):
+    template = 'recommendations.html'
+
+    recommend_books = recommend('Психолог в концлагере ')
+    context = {
+        'title': 'Recommendations',
+        'recommend_books': recommend_books
+    }
+    return render(request, template, context)
+"""
+
+def search_book_recommend(request):
+    # query = request.GET.get('q')
+    try:
+        # print(Book.objects.filter(name__icontains=query))
+        books_rec_list = []
+        recommend_books = recommend('Хочу — Mогу — Надо. Узнай себя и действуй! ')
+        for book_name in recommend_books:
+            print(book_name)
+            books_rec_list.append(Book.objects.filter(name__icontains=book_name.strip()))
+            print(books_rec_list)
+            if Book.objects.filter(name__icontains=book_name.strip()):
+                books_rec_list.append(Book.objects.filter(name__icontains=book_name.strip()))
+                print(books_rec_list)
+                test = test | Book.objects.filter(name__icontains=book_name.strip())
+
+                print(test)
+
+        # object_list = Book.objects.filter(name__icontains=query)
+        paginator = Paginator(books_rec_list, 10)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        context = {
+            'title': 'Books',
+            'books': books_rec_list,
+            'page_obj': page_obj
+        }
+        return render(request, 'books.html', context)
+    except:
+        return redirect('books:object_not_found')
+"""
 
 @login_required
 def make_favore(request, id):
@@ -179,15 +215,6 @@ def author_delete(request, id):
     author = get_object_or_404(Author, id=id)
     author.delete()
     return redirect('books:authors')
-
-
-@login_required
-def recommendations(request):
-    template = 'recommendations.html'
-    context = {
-        'title': 'Recommendations',
-    }
-    return render(request, template, context)
 
 
 @login_required
