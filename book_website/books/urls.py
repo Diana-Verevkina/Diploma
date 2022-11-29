@@ -12,7 +12,7 @@ urlpatterns = [
     path('/authors/<int:id>/', views.author_detail, name='author_detail'),
     path('authors/', views.authors, name='authors'),
 
-    path('recommendations', views.recommendations),
+    path('recommendations', views.recommendations, name='recommendations'),
 
     path('book_create/', views.book_create, name='book_create'),
 
@@ -30,9 +30,14 @@ urlpatterns = [
          name='delete_comment'),
 
     path('/authors/<int:id>/delete', views.author_delete, name='author_delete'),
-
+    path('search_book_recommend/', views.search_book_recommend,
+         name='search_book_recommend'),
+    path('book_recommend/<int:id>', views.book_recommend,
+         name='book_recommend'),
     path('search_book/', views.search_book, name='search_book'),
-    # path('search_book_recommend/', views.search_book_recommend, name='search_book_recommend'),
+    path('search_favorite_book/', views.search_favorite_book,
+         name='search_favorite_book'),
+
     path('search_author/', views.search_author, name='search_author'),
 
     path('object_not_found/', views.object_not_found, name='object_not_found'),

@@ -32,9 +32,13 @@
         </div>
 
         <div class="col-sm-8 col-lg-8" id="book_description">
-          <p>Author: <small><a id="book_link"
-                               href="{% url 'books:author_detail' book.author_id.id %}">{{ book.author_id }}</a>
-          </small></p>
+          {% if book.author %}
+            <p>Author: <small><a id="book_link"
+                                 href="{% url 'books:author_detail' book.author_id.id %}">{{ book.author_id }}</a>
+            </small></p>
+          {% else %}
+            <p style="color: #641010"> Автор неизвестен </p>
+          {% endif %}
           <p>Section: <small> {{ book.section }} </small></p>
           <p>Age: <small> {{ book.age }} </small></p>
           <p>Year: <small> {{ book.year }} </small></p>
@@ -55,13 +59,15 @@
               удалить запись
             </a>
           {% endif %}
-          {% if book.is_favore == True %}
-            <a id="book_link" href="{% url 'books:make_not_favore' book.id %}"
-               style="font-size: 20pt; color: darkred">&#9829;</a>
+          {% if book.id in favore_flags %}
+            <a id="book_link" href="{% url 'books:make_not_favore' book.id %}
+            " style="font-size: 20pt; color: darkred">&#9829;</a>
           {% else %}
-            <a id="book_link" href="{% url 'books:make_favore' book.id %}"
-               style="font-size: 20pt; color: darkred">&#9825;</a>
+            <a id="book_link" href="{% url 'books:make_favore' book.id %}
+            " style="font-size: 20pt; color: darkred">&#9825;</a>
           {% endif %}
+        <p></p>
+                  <a style="color: #411910" id="book_link" href="{% url 'books:book_recommend' book.id %}">посмотреть похожие</a>
 
         </div>
 

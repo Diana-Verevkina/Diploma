@@ -6,8 +6,9 @@ User = get_user_model()
 
 class Author(models.Model):
     author_name = models.CharField(max_length=50)
+    author_name_lower = models.CharField(max_length=200, blank=True, null=True)
     author_photo = models.TextField(blank=True, null=True)
-    photo = models.ImageField('Картинка', upload_to='authors/', blank=True)
+    photo = models.ImageField('Картинка', upload_to='authors/', blank=True, null=True)
 
     def __str__(self):
         return self.author_name
@@ -15,13 +16,14 @@ class Author(models.Model):
 
 class Book(models.Model):
     name = models.CharField(max_length=200)
+    name_lower = models.CharField(max_length=200, blank=True, null=True)
     author = models.CharField(max_length=50, blank=True, null=True)
     section = models.CharField(max_length=50)
     publish = models.CharField(max_length=50, default=None)
     age = models.CharField(max_length=5)
     year = models.CharField(max_length=5)
-    pages = models.IntegerField()
-    rating = models.FloatField(blank=True, null=True)
+    pages = models.CharField(max_length=10, blank=True, null=True)
+    rating = models.CharField(max_length=10, blank=True, null=True)
     cove = models.TextField(blank=True, null=True)
     description = models.TextField()
     author_photo = models.TextField(blank=True, null=True)
