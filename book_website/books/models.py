@@ -5,10 +5,15 @@ User = get_user_model()
 
 
 class Author(models.Model):
+    # имя автора
     author_name = models.CharField(max_length=50)
+    # имя автора маленькими буквами
     author_name_lower = models.CharField(max_length=200, blank=True, null=True)
+    # url фото автора (загружаем с базой данных)
     author_photo = models.TextField(blank=True, null=True)
-    photo = models.ImageField('Картинка', upload_to='authors/', blank=True, null=True)
+    # фото автора, добавляемое пользователем через форму на сайте
+    photo = models.ImageField('Картинка', upload_to='authors/', blank=True,
+                              null=True)
 
     def __str__(self):
         return self.author_name
@@ -16,25 +21,39 @@ class Author(models.Model):
 
 class Book(models.Model):
     name = models.CharField(max_length=200)
+    # название книги маленькими буквами
     name_lower = models.CharField(max_length=200, blank=True, null=True)
+    # имя автора текстом (после парсера)
     author = models.CharField(max_length=50, blank=True, null=True)
+    # раздел литературы
     section = models.CharField(max_length=50)
-    publish = models.CharField(max_length=50, default=None)
+    # издательство
+    publish = models.CharField(max_length=50, default=None,
+                               blank=True, null=True)
+    # ограничение по возрасту
     age = models.CharField(max_length=5)
+    # год выпуска
     year = models.CharField(max_length=5)
+    # количество страниц
     pages = models.CharField(max_length=10, blank=True, null=True)
     rating = models.CharField(max_length=10, blank=True, null=True)
+    # ссылка на фото обложки книги
     cove = models.TextField(blank=True, null=True)
+    # описание книги
     description = models.TextField()
-    author_photo = models.TextField(blank=True, null=True)
     author_id = models.ForeignKey(Author, verbose_name='Автор',
                                   on_delete=models.SET_NULL, blank=True,
                                   null=True, related_name='books')
+    # фото обложки книги, добавляемое пользователем через форму на сайте
     image = models.ImageField('Картинка', upload_to='books/', blank=True)
-    is_favore = models.BooleanField(default=False, blank=True, null=True)
+    # тэги книги - описания, обработанные spacy в начальной форме,
+    # без стоп-слов, без окончаний
+    tags = models.TextField(blank=True, null=True)
+    # вектор, созданный из tags
+    vector = models.TextField(blank=True, null=True)
 
-    """def __str__(self):
-        return str(self.name)"""
+    def __str__(self):
+        return str(self.name)
 
 
 class FavoreBook(models.Model):
