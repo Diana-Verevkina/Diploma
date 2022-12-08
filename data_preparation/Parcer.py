@@ -156,7 +156,7 @@ def get_data(url):
             print(f"Сбор данных завершен")
         time.sleep(random.randrange(2, 4))
 
-    with open("data_preparation/project_book.json", "a", encoding="utf-8") as file:
+    with open("project_book.json", "a", encoding="utf-8") as file:
         json.dump(project_data_list, file, indent=4, ensure_ascii=False)
 
 
