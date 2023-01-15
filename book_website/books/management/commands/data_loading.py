@@ -1,10 +1,10 @@
 import csv
+
 import pandas as pd
 from django.core.management import BaseCommand
-from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import CountVectorizer
 
 from ...models import Author, Book
-from sklearn.feature_extraction.text import CountVectorizer
 
 main_path = ('/Users/dianaverevkina/Diplom_project/Diploma — копия 3/'
              'data_preparation')
@@ -20,8 +20,6 @@ clean_data['tags'] = spacylem['tags']
 dataclean_tags = clean_data
 dataclean_tags.to_csv(f'{main_path}/dataclean_tags.csv')
 path_dataclean_tags = f'{main_path}/dataclean_tags.csv'
-
-
 
 
 def vector():
