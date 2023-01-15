@@ -1,2 +1,2 @@
 # Diploma
-My diploma: web application with books + recommendation system. Bachelor's degree.
+ <img src="img.png" style="height: 40pt">

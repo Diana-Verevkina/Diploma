@@ -13,22 +13,24 @@ def get_data(url):
     }
     project_data_list = []
 
-    iteration_count = 59
+    iteration_count = 59  # количество страниц
     print(f"Всего итераций: #{iteration_count}")
 
+    # сохраняем каждую страницу
     for page in range(1, iteration_count+1):
         real_url = url + "page-" + str(page)
         req = requests.get(real_url, headers)  # get запрос
         with open("pages_site/project" + str(page) + ".html", "w",
                   encoding="utf-8") as file:
             file.write(req.text)
-
+        # открываем полученные страницы
         with open("pages_site/project" + str(page) + ".html",
                   encoding="utf-8") as file:
              src = file.read()
 
         soup = bs(src, "lxml")
-        articles = soup.find_all(class_="product-list__item")  # получаем список
+        # получаем список объектов книг класса "product-list__item"
+        articles = soup.find_all(class_="product-list__item")
 
         project_urls = []
         # находим ссылки
@@ -51,76 +53,97 @@ def get_data(url):
             soup = bs(src, "lxml")
             project_data = soup.find("div", class_="product-detail-page__body")
 
-            project_name, project_author, project_section, project_publish, \
-            project_age, project_years, project_pages, project_rating, \
-            project_obl, project_descrip = "NaN", "NaN", "NaN", "NaN", "NaN", \
-                                           "NaN", "NaN", "NaN", "NaN", "NaN"
-
-        #  обложка книги
+            (project_name, project_author, project_section, project_publish,
+             project_age, project_years, project_pages, project_rating,
+             project_obl, project_descrip) = (
+                "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN", "NaN",
+                "NaN", "NaN"
+            )
+            # картинки обложек книг
             try:
-                project_obl = "https:" + project_data.find("picture", class_="product-poster__main-picture").find("img").get("src")
+                project_obl = "https:" + project_data.find(
+                    "picture", class_="product-poster__main-picture"
+                ).find("img").get("src")
             except Exception:
                 project_obl = "NaN"
-            # print(project_obl)
-
-        #  название
+            # название
             try:
-                if project_data.find("div", class_="product-characteristic__label-holder").find("span").text == " Автор: ":
-                    project_name = project_data.find("div", class_="product-detail-page__title-holder").find("h1").text
+                if project_data.find(
+                        "div", class_="product-characteristic__label-holder"
+                ).find("span").text == " Автор: ":
+                    project_name = project_data.find(
+                        "div", class_="product-detail-page__title-holder"
+                    ).find("h1").text
                     project_name = project_name.split(':')[-1][1:]
             except Exception:
                 project_name = "NaN"
 
-        #  автор
+            # автор
             try:
-                project_author = project_data.find("div", class_="product-characteristic__value").find("a").text
+                project_author = project_data.find(
+                    "div", class_="product-characteristic__value"
+                ).find("a").text
             except Exception:
                 project_author = "NaN"
-
-        #  описание
+            # описание
             project_descrip = ""
             try:
-                project_desc = project_data.find("div", class_="product-about__text").find_all("p")
+                project_desc = project_data.find(
+                    "div", class_="product-about__text"
+                ).find_all("p")
                 for desc in project_desc:
                     project_descrip += desc.text
             except Exception:
                 project_descrip = "NaN"
 
-        #  Раздел, издательство, возрастное ограничение, год издания,
-            #  количество страниц
+            # раздел, издательство, возрастное ограничение, год издания,
+            # количество страниц
             try:
-                project_charac = soup.find("div", class_="product-detail-page__main-holder")
-                harac = project_charac.find_all(class_="product-characteristic__item-holder")
-
+                project_charac = soup.find(
+                    "div", class_="product-detail-page__main-holder"
+                )
+                harac = project_charac.find_all(
+                    class_="product-characteristic__item-holder"
+                )
                 slov = [" Раздел: ", " Издательство: ",
                         " Возрастное ограничение: ", " Год издания: ",
                         " Количество страниц: "]
                 for har in harac:
                     try:
-                        if har.find("span", class_="product-characteristic__label").text == slov[0]:
-                            project_section = har.find("a", class_="product-characteristic-link smartLink").text
+                        if har.find(
+                                "span", class_="product-characteristic__label"
+                        ).text == slov[0]:
+                            project_section = har.find("a", class_=
+                            "product-characteristic-link smartLink").text
                     except Exception:
                         project_section = "NaN"
                     try:
-                        if har.find("span", class_="product-characteristic__label").text == slov[1]:
-                            project_publish = har.find("a", class_="product-characteristic-link smartLink").text
-                            # print(project_publish)
+                        if har.find(
+                                "span", class_="product-characteristic__label"
+                        ).text == slov[1]:
+                            project_publish = har.find("a", class_=
+                            "product-characteristic-link smartLink").text
                     except Exception:
                         project_publish = "NaN"
                     try:
-                        if har.find("span", class_="product-characteristic__label").text == slov[2]:
-                            project_age = har.find("div", class_="product-characteristic__value").text
+                        if har.find("span", class_=
+                        "product-characteristic__label").text == slov[2]:
+                            project_age = har.find("div", class_=
+                            "product-characteristic__value").text
                     except Exception:
                         project_age = "NaN"
                     try:
-                        if har.find("span", class_="product-characteristic__label").text == slov[3]:
-                            project_years = har.find("div", class_="product-characteristic__value").text
-                            # print(project_years)
+                        if har.find("span", class_=
+                        "product-characteristic__label").text == slov[3]:
+                            project_years = har.find("div", class_=
+                            "product-characteristic__value").text
                     except Exception:
                         project_years = "NaN"
                     try:
-                        if har.find("span", class_="product-characteristic__label").text == slov[4]:
-                            project_pages = har.find("div", class_="product-characteristic__value").text
+                        if har.find("span", class_=
+                        "product-characteristic__label").text == slov[4]:
+                            project_pages = har.find("div", class_=
+                            "product-characteristic__value").text
                     except Exception:
                         project_pages = "NaN"
             except Exception:
@@ -129,10 +152,11 @@ def get_data(url):
                 project_age = "NaN"
                 project_years = "NaN"
                 project_pages = "NaN"
-
-        #  Рейтинг
+            # рейтинг
             try:
-                project_rating = project_data.find("div", class_="product-detail-page__more-information").find("span", class_="rating-widget__main-text").text
+                project_rating = project_data.find("div", class_=
+                "product-detail-page__more-information").find(
+                    "span", class_="rating-widget__main-text").text
             except Exception:
                 project_rating = "NaN"
 
