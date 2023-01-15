@@ -4,7 +4,7 @@ import pandas as pd
 from django.core.management import BaseCommand
 from sklearn.feature_extraction.text import CountVectorizer
 
-from ...models import Author, Book
+from ...models import Author, Book, Section
 
 main_path = ('/Users/dianaverevkina/Diplom_project/Diploma — копия 3/'
              'data_preparation')
@@ -12,6 +12,7 @@ main_path = ('/Users/dianaverevkina/Diplom_project/Diploma — копия 3/'
 path = f'{main_path}/clean_data.csv'
 path_authors = f'{main_path}/authors_new.csv'
 path_tags = f'{main_path}/spacylem.csv'
+path_sections = f'{main_path}/sections_new.csv'
 
 clean_data = pd.read_csv(f'{main_path}/clean_data.csv')
 spacylem = pd.read_csv(f'{main_path}/spacylem.csv')
@@ -75,6 +76,23 @@ class Command(BaseCommand):
                     book.author_id = author
                     book.save()
         print(f'Данные о связях книг с авторами загружены')
+
+        if Section.objects.exists():
+            raise Exception(f'Ошибка. Данные в модель {Section.__name__} '
+                            f'уже загружены.')
+        else:
+            print(f'Загрузка данных в модель {Section.__name__}...')
+        for row in csv.DictReader(open(f'{path_sections}', encoding='utf-8')):
+            columns = Section(name=row['section'], )
+            columns.save()
+        print(f'Данные в модель {Section.__name__} загружены')
+
+        for book in Book.objects.all():
+            for section in Section.objects.all():
+                if book.section == section.name:
+                    book.section_id = section
+                    book.save()
+        print(f'Данные о связях книг с секциями загружены')
 
         for book in Book.objects.all():
             book.name_lower = book.name.lower().replace(

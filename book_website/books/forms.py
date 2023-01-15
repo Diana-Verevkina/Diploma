@@ -1,17 +1,15 @@
 from django import forms
 
-from .models import Book, Author, Comment
+from .models import Book, Author, Comment, Section
 
 
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ('name', 'section', 'publish', 'age', 'year',
+        section = forms.ModelChoiceField(queryset=Section.objects.all(),
+                                       required=False)
+        fields = ('name', 'section_id', 'publish', 'age', 'year',
                   'pages', 'description', 'author_id', 'image')
-        """labels = {'text': 'Введите текст', 'group': 'Выберите группу'}
-        help_texts = {'text': 'Здесь напишите свой пост',
-                      'group': 'Выберите группу из существующих',
-                      'image': 'Выберите изображение'}"""
 
 
 class AuthorForm(forms.ModelForm):

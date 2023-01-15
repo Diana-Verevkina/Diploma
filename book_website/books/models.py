@@ -19,6 +19,13 @@ class Author(models.Model):
         return self.author_name
 
 
+class Section(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+
 class Book(models.Model):
     name = models.CharField(max_length=200)
     # название книги маленькими буквами
@@ -27,6 +34,9 @@ class Book(models.Model):
     author = models.CharField(max_length=50, blank=True, null=True)
     # раздел литературы
     section = models.CharField(max_length=50)
+    section_id = models.ForeignKey(Section, verbose_name='Section',
+                                  on_delete=models.SET_NULL, blank=True,
+                                  null=True, related_name='books')
     # издательство
     publish = models.CharField(max_length=50, default=None,
                                blank=True, null=True)
