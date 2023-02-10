@@ -10,7 +10,7 @@ from nltk.corpus import stopwords
 from nltk.stem.snowball import SnowballStemmer
 from sklearn.feature_extraction.text import CountVectorizer
 
-from .forms import BookForm, AuthorForm, CommentForm
+from .forms import BookForm, AuthorForm, CommentForm, SectionForm
 from .models import Book, Author, Comment, FavoreBook
 from .recommendations import recommend
 
@@ -237,6 +237,17 @@ def book_create(request):
     book.vector = vector_add(book.name, book.tags)
     book.name_lower = book.name.lower()
     book.save()
+    return redirect('books:books')
+
+
+@login_required
+def section_create(request):
+    """Добавление новой секции."""
+    form = SectionForm(request.POST or None, files=request.FILES or None, )
+    if not form.is_valid():
+        return render(request, 'books/section_create.html', {'form': form})
+    section = form.save(commit=False)
+    section.save()
     return redirect('books:books')
 
 

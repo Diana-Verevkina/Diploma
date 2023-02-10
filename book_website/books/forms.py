@@ -3,6 +3,13 @@ from django import forms
 from .models import Book, Author, Comment, Section
 
 
+class SectionForm(forms.ModelForm):
+    class Meta:
+        model = Section
+        fields = ('name',)
+        labels = {'name': 'Название секции'}
+
+
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book

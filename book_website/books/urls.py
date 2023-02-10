@@ -57,4 +57,5 @@ urlpatterns = [
     # объект не найден - object_not_found
     path('object_not_found/', views.object_not_found, name='object_not_found'),
 
+    path('section_create/', views.section_create, name='section_create'),
 ]
