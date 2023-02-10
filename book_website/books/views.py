@@ -124,29 +124,29 @@ def book_recommend(request, id, for_recommend=False):
 @login_required
 def make_favore(request, id):
     """Добавить книгу в избранное."""
-
-    template = 'books/make_favore.html'
-    favorite_book = get_object_or_404(Book, id=id)
+    # template = 'books/make_favore.html'
+    # favorite_book = get_object_or_404(Book, id=id)
     FavoreBook.objects.get_or_create(person=request.user,
                                      book=get_object_or_404(Book, id=id))
-    context = {
-        'book': favorite_book,
-    }
-    return render(request, template, context)
+    # context = {'book': favorite_book,}
+    # return render(request, template, context)
+    # return redirect(request.META.get('HTTP_REFERER'))
+    return redirect('books:favorites')
 
 
 @login_required
 def make_not_favore(request, id):
     """Удалить книгу из избранного."""
 
-    template = 'books/make_not_favore.html'
-    not_favore = get_object_or_404(Book, id=id)
+    # template = 'books/make_not_favore.html'
+    # not_favore = get_object_or_404(Book, id=id)
     FavoreBook.objects.filter(person=request.user,
                               book=get_object_or_404(Book, id=id)).delete()
-    context = {
-        'book': not_favore,
-    }
-    return render(request, template, context)
+    # context = {'book': not_favore,}
+    # return render(request, template, context)
+    # return redirect('books:books')
+    # return redirect(request.META.get('HTTP_REFERER'))
+    return redirect('books:books')
 
 
 @login_required

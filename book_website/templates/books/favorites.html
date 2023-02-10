@@ -9,8 +9,9 @@
     <div class="container-fluid">
       <div class="row">
         <p></p>
+        <h2 style="color: #6a3f27; text-align: center">Избранные книги</h2>
 
-        <form action="{% url 'books:search_favorite_book'%}" method="get">
+        <form action="{% url 'books:search_favorite_book'%}" method="get" style="margin-top: -3%">
           <input name="q" type="text" placeholder="Search...">
           <button type="submit" class="btn btn-primary"
                 style="background: #72513e; border-color: #41220c">
