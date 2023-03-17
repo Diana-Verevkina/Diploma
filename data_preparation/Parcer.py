@@ -1,6 +1,7 @@
 import json
 import random
 import time
+
 import requests
 from bs4 import BeautifulSoup as bs
 
@@ -12,21 +13,21 @@ def get_data(url):
                       "537.36"
     }
     project_data_list = []
-
-    iteration_count = 59  # количество страниц
+    # количество страниц - количество итераций
+    iteration_count = 59
     print(f"Всего итераций: #{iteration_count}")
 
     # сохраняем каждую страницу
-    for page in range(1, iteration_count+1):
+    for page in range(1, iteration_count + 1):
         real_url = url + "page-" + str(page)
-        req = requests.get(real_url, headers)  # get запрос
+        req = requests.get(real_url, headers)
         with open("pages_site/project" + str(page) + ".html", "w",
                   encoding="utf-8") as file:
             file.write(req.text)
         # открываем полученные страницы
         with open("pages_site/project" + str(page) + ".html",
                   encoding="utf-8") as file:
-             src = file.read()
+            src = file.read()
 
         soup = bs(src, "lxml")
         # получаем список объектов книг класса "product-list__item"
@@ -36,7 +37,8 @@ def get_data(url):
         # находим ссылки
         for article in articles:
             project_url = "https://book24.ru" + article.find("div",
-                    class_="product-card__image-holder").find("a").get("href")
+                                                             class_="product-card__image-holder").find(
+                "a").get("href")
             project_urls.append(project_url)
 
         for project_url in project_urls:

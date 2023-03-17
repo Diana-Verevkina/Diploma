@@ -63,16 +63,11 @@ def book_detail(request, id):
     """Детали о книге."""
     template = 'books/book_detail.html'
     books_objects = get_object_or_404(Book, id=id)
-    if request.user.is_authenticated and request.user.username == 'diana':
-        may_delete = True
-    else:
-        may_delete = False
     form = CommentForm(request.POST or None)
     favore_books, favore_flags = get_favore_flags(request)
 
     context = {
         'book': books_objects,
-        'may_delete': may_delete,
         'form': form,
         'comments': books_objects.comments.all(),
         'favore_flags': favore_flags
@@ -124,28 +119,16 @@ def book_recommend(request, id, for_recommend=False):
 @login_required
 def make_favore(request, id):
     """Добавить книгу в избранное."""
-    # template = 'books/make_favore.html'
-    # favorite_book = get_object_or_404(Book, id=id)
     FavoreBook.objects.get_or_create(person=request.user,
                                      book=get_object_or_404(Book, id=id))
-    # context = {'book': favorite_book,}
-    # return render(request, template, context)
-    # return redirect(request.META.get('HTTP_REFERER'))
     return redirect('books:favorites')
 
 
 @login_required
 def make_not_favore(request, id):
     """Удалить книгу из избранного."""
-
-    # template = 'books/make_not_favore.html'
-    # not_favore = get_object_or_404(Book, id=id)
     FavoreBook.objects.filter(person=request.user,
                               book=get_object_or_404(Book, id=id)).delete()
-    # context = {'book': not_favore,}
-    # return render(request, template, context)
-    # return redirect('books:books')
-    # return redirect(request.META.get('HTTP_REFERER'))
     return redirect('books:books')
 
 
@@ -283,14 +266,9 @@ def author_detail(request, id):
     template = 'authors/author_detail.html'
     author = get_object_or_404(Author, id=id)
     book_list = author.books.distinct()
-    if request.user.is_authenticated and request.user.username == 'diana':
-        may_delete = True
-    else:
-        may_delete = False
     context = {
         'author': author,
         'book_list': book_list,
-        'may_delete': may_delete
     }
     return render(request, template, context)
 
@@ -303,6 +281,7 @@ def author_create(request):
     if not form.is_valid():
         return render(request, 'authors/create_author.html', {'form': form})
     author = form.save(commit=False)
+    author.author_name_lower = author.author_name.lower()
     author.save()
     return redirect('books:authors')
 

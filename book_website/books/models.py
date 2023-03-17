@@ -72,7 +72,8 @@ class FavoreBook(models.Model):
         on_delete=models.CASCADE, blank=True,
         null=True, related_name='FavoreBook',
         help_text='Ссылка пользователя, который поставил like')
-    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='favorite_books')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE,
+                             related_name='favorite_books')
 
 
 class Comment(models.Model):

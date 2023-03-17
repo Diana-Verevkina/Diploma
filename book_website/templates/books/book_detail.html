@@ -44,20 +44,18 @@
           <p>Year: <small> {{ book.year }} </small></p>
           <p>Pages: <small> {{ book.pages }} </small></p>
           <p>Description: <small> {{ book.description }} </small></p>
-          {% if user.username == 'diana' %}
+          {% if user.username == 'dianaverevkina' %}
             <a class="btn btn-primary"
                style="background: #c79577; border-color: #8a5834"
                href="{% url 'books:book_edit' id=book.id %}">
             редактировать запись
-          {% else %}
-            <span style='color: darkred'> редактирование недоступно </span>
-          {% endif %}
-          {% if may_delete %}
             <a class="btn btn-primary"
                href="{% url 'books:book_delete' id=book.id %}"
                style="background: darkred; border-color: #641010">
               удалить запись
             </a>
+          {% else %}
+            <span style='color: darkred'> редактирование недоступно </span>
           {% endif %}
           {% if book.id in favore_flags %}
             <a id="book_link" href="{% url 'books:make_not_favore' book.id %}
