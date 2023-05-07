@@ -33,17 +33,17 @@
 
         <div class="col-sm-8 col-lg-8" id="book_description">
           {% if book.author_id %}
-            <p>Author: <small><a id="book_link"
+            <p>Автор: <small><a id="book_link"
                                  href="{% url 'books:author_detail' book.author_id.id %}">{{ book.author_id.author_name }}</a>
             </small></p>
           {% else %}
             <p style="color: #641010"> Автор неизвестен </p>
           {% endif %}
-          <p>Section: <small> {{ book.section }} </small></p>
-          <p>Age: <small> {{ book.age }} </small></p>
-          <p>Year: <small> {{ book.year }} </small></p>
-          <p>Pages: <small> {{ book.pages }} </small></p>
-          <p>Description: <small> {{ book.description }} </small></p>
+          <p>Секция: <small> {{ book.section }} </small></p>
+          <p>Возрастное ограничение: <small> {{ book.age }} </small></p>
+          <p>Год издания: <small> {{ book.year }} </small></p>
+          <p>Количество страниц: <small> {{ book.pages }} </small></p>
+          <p>Описание: <small> {{ book.description }} </small></p>
           {% if user.username == 'dianaverevkina' %}
             <a class="btn btn-primary"
                style="background: #c79577; border-color: #8a5834"

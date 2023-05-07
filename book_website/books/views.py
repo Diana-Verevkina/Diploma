@@ -97,11 +97,11 @@ def book_recommend(request, id, for_recommend=False):
         recommend_books = recommend(for_recommend_name)
         for book_name in recommend_books:
             if Book.objects.filter(name__icontains=book_name.strip()):
-                books_rec_list.append(Book.objects.filter(name__icontains=book_name.strip()))
+                books_rec_list.append(Book.objects.filter(name__icontains=
+                                                          book_name.strip()))
         test = books_rec_list[0]
         for book in books_rec_list[1:]:
             test = test | book
-
         paginator = Paginator(test, 10)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)

@@ -14,8 +14,7 @@
           <h5 class="card-title">{{ book.book.name }}</h5>
           <p class="card-text">{{ book.book.author }}</p>
           <p class="card-text">{{ book.book.age }}</p>
-          <a id="book_link" href="{% url 'books:book_detail' book.book.id %}">more
-            detailed</a>
+          <a id="book_link" href="{% url 'books:book_detail' book.book.id %}">подробнее</a>
           <p></p>
             <a id="book_link" href="{% url 'books:make_not_favore' book.book.id %}" style="font-size: 20pt; color: darkred">&#9829;</a>
         </div>

@@ -31,7 +31,7 @@
         </div>
 
         <div class="col-sm-8 col-lg-8" id="book_description">
-          <p>Books:</p>
+          <p style="background: white">Книги:</p>
           {% for book in book_list %}
             <a id="book_link"
              href="{% url 'books:book_detail' book.id %}">{{ book.name }}</a>
