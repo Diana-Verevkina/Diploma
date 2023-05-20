@@ -180,6 +180,7 @@ def stemming(text):
 
 def tags_create(description, section):
     """Создание тегов из описаний книг."""
+
     description = re.sub("[^А-Яа-я, ё, \n, -]", "", description)
     description = description.lower()
     description = re.sub(",", " ", description)

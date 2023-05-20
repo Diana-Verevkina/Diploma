@@ -32,6 +32,10 @@
         </div>
 
         <div class="col-sm-8 col-lg-8" id="book_description">
+        <a style="color: #1c65d3"
+               href="{{book.shop}}">
+            Ссылка на магазин </a>
+        <p></p>
           {% if book.author_id %}
             <p>Автор: <small><a id="book_link"
                                  href="{% url 'books:author_detail' book.author_id.id %}">{{ book.author_id.author_name }}</a>

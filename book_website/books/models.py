@@ -63,6 +63,7 @@ class Book(models.Model):
     tags = models.TextField(blank=True, null=True)
     # вектор, созданный из tags
     vector = models.TextField(blank=True, null=True)
+    shop = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return str(self.name)
